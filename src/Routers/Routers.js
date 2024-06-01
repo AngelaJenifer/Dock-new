@@ -7,6 +7,8 @@ import Register from '../Components/Register/Register';
 import Calendar from '../Components/UI/Calender';
 import Tracking from '../Pages/Tracking';
 import DockBooking from '../Pages/Dockbooking';
+import Company from '../Pages/Company';
+import TruckType from '../Pages/TruckType';
 const Routers = () => {
   return (
     <Routes>
@@ -18,6 +20,11 @@ const Routers = () => {
     <Route path='/calendar' element={<Calendar />} />
     <Route path='/tracking' element={<Tracking />} />
     <Route path='/dockbooking' element={<DockBooking />} />
+    <Route path='/settings/company' element={<Company />} />
+    <Route path='/settings/trucktype' element={<TruckType />} />
+
+    
+    
    </Routes>
   )
  
