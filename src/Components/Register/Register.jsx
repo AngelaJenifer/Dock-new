@@ -11,11 +11,13 @@ import {
 }
 from 'mdb-react-ui-kit';
 import '../Register/Register.css';
-import registerimg from '../../Assets/all-images/truck-img/img2.jpg'
+import registerimg from '../../Assets/all-images/truck-img/dockhd.jpg'
 import { Link, useNavigate } from 'react-router-dom';
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
-import axios from 'axios'
+import axios from 'axios';
+import { ClipLoader } from 'react-spinners';
+
 
 
 
@@ -25,6 +27,7 @@ function Register() {
     const [password, setPassword] = useState('')
     const [cpassword, setCpassword] = useState('')
     const [loginError, setLoginError] = useState('')
+    const [isLoading, setIsLoading] = useState(false);
     const navigate = useNavigate()
 
     const handleSubmit = (e) => {
@@ -37,8 +40,11 @@ function Register() {
           setLoginError('Passwords does not match')
           return;
         }
-        axios.post('http://localhost:3000/signup',{userid, password, cpassword})
-        .then(result => {console.log(result)
+        setIsLoading(true);
+        axios.post('http://localhost:5000/signup',{userid, password, cpassword})
+        .then(result => {
+          console.log(result)
+          setIsLoading(false);
             navigate('/login')
         })
         .catch(error => {
@@ -99,8 +105,13 @@ function Register() {
                     className='form-control rounded-0'
                     />
                 </div>
-                <button type="submit" className='btn btn-success w-100 rounded-0'  style={{background: '#7c5f87'}}>
-                    Signup
+                <button 
+                type="submit" 
+                className='btn btn-success w-100 rounded-0'  
+                style={{background: '#7c5f87'}}
+                disabled={isLoading}
+                >
+                    {isLoading ? <ClipLoader size={20} color={"#ffffff"} /> : 'Signup'}
                     </button>
                     {loginError && <p style={{color: "red"}}>{loginError}</p>}
                 

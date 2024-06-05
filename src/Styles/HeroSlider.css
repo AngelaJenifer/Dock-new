@@ -5,16 +5,16 @@
   }
   
   .slider_item-01 {
-    background: linear-gradient(rgba(229, 175, 234, 0.5), rgba(90, 38, 87, 0.5)),
-      url("../Assets/all-images/slider-img/slider5.avif");
+    background: linear-gradient(rgba(223, 185, 227, 0.5), rgba(90, 38, 87, 0.5)),
+      url("../Assets/all-images/slider-img/slider8.jpg");
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
   }
   
   .slider_item-02 {
-    background: linear-gradient(rgba(229, 175, 234, 0.5), rgba(90, 38, 87, 0.5)),
-    url("../Assets/all-images/slider-img/slider6.avif");
+    background: linear-gradient(rgba(223, 185, 227, 0.5), rgba(90, 38, 87, 0.5)),
+    url("../Assets/all-images/slider-img/slider9.jpg");
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -51,6 +51,14 @@
     cursor: pointer;
   }
   
+  .booknow{
+    font-size: 1.7rem;
+    font-weight: "500"; 
+  }
+
+  .booknow:hover{
+    color: rgb(141, 141, 233);
+  }
   .reserve__btn a {
     text-decoration: none;
     font-weight: 600;

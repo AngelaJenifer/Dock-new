@@ -5,18 +5,28 @@ import '../../Styles/Header.css';
 import { FaPhone } from "react-icons/fa6";
 import Select from 'react-select';
 import countryList from 'react-select-country-list';
+import { ClipLoader } from 'react-spinners'
 
 
 
 
 const Header = () => {
   const [value, setValue] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
 
   const options = useMemo(() => countryList().getData(), [])
 
   const changeHandler = value => {
     setValue(value)
   }
+
+  const handleBooking = async () => {
+    setIsLoading(true);
+    // Simulate a network request
+    await new Promise(resolve => setTimeout(resolve, 1000));
+    setIsLoading(false);
+    // alert('Slot booked successfully!');
+  };
 
   const customStyles = {
     control: (provided) => ({
@@ -88,8 +98,14 @@ const Header = () => {
                 <h1>
                   <Link to="/home" className=" d-flex align-items-center gap-2">
                   <i class="ri-truck-line"></i>                    
-                  <span>
-                      Book <br /> Slot
+                  <span
+                     onClick={handleBooking} 
+                     isLoading={isLoading}
+                     handleBooking={handleBooking}
+                     >
+                    {isLoading ? <ClipLoader size={20} color={"red"} /> : <span>Book <br />Slot</span>}
+                    
+                      
                     </span>
                   </Link>
                 </h1>

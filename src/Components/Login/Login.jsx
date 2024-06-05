@@ -11,7 +11,7 @@ import {
   MDBInput
 }
 from 'mdb-react-ui-kit';
-import video1 from '../../Assets/all-images/truck-img/img1.png';
+import video1 from '../../Assets/all-images/truck-img/truckhd.webp';
 import { Link, useNavigate } from 'react-router-dom';
 import '../Login/Login.css';
 import Header from '../Header/Header';
@@ -34,7 +34,7 @@ function Login() {
         setLoginError('Please enter both userid and password')
         return;
       }
-      axios.post('http://localhost:3000/login',{userid, password})
+      axios.post('http://localhost:5000/login',{userid, password})
       .then(result => {
           console.log(result)
           if(result.data === "Success"){
@@ -69,13 +69,13 @@ function Login() {
             <MDBCardBody className='d-flex flex-column'>
 
             <div className='d-flex justify-content-center align-items-center  '>
-            <div className='bg-white p-3 rounded w-50'>
-            <h2>Login</h2>
+            <div className='bg-white p-5 rounded w-100'>
+            <h2 style={{ paddingLeft: "100px"}}>Login</h2>
             
             
             
             <form onSubmit={handleLogin}>
-                <div className='mb-3'>
+                <div className='mb-5'>
                     <label>User ID:</label>
                     <input 
                     type="text" 
@@ -83,7 +83,7 @@ function Login() {
                     className='form-control rounded-0'
                     onChange={(e) => setUserid(e.target.value)} />
                 </div>
-                <div className='mb-3'>
+                <div className='mb-5'>
                     <label>Password:</label>
                     <input 
                     type="password" 

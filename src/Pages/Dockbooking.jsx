@@ -1,14 +1,76 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import "ag-grid-community/styles/ag-grid.css"; // Core CSS
 import "ag-grid-community/styles/ag-theme-quartz.css";
 import { AgGridReact } from 'ag-grid-react';
 import Nav from '../Components/UI/Nav';
+import { SortIndicatorComp } from 'ag-grid-react';
+
+
+const MultiLineHeader = ({ headerText, enableSorting, sort, setSort }) => {
+    const headerLines = headerText.split(" ");
+
+    const handleSort = () => {
+        if (enableSorting) {
+            // Toggle sorting order when clicked
+            const newSort = sort === 'asc' ? 'desc' : 'asc';
+            setSort(newSort);
+        }
+    };
+
+    const renderSortIndicator = () => {
+        if (enableSorting) {
+            if (sort === 'asc') {
+                return '↑';
+            } else if (sort === 'desc') {
+                return '↓';
+            }
+        }
+        return null;
+    };
+    
+
+    return (
+        <div style={{ textAlign: 'center', whiteSpace: 'pre-wrap',cursor: enableSorting ? 'pointer' : 'default' }} onClick={handleSort} >
+            {headerLines.map((line, index) => (
+                <div key={index}>{line}</div>
+            ))}
+            {renderSortIndicator()}
+           
+        </div>
+    );
+};
+
 
 const DockBooking = () => {
     const [fromDate, setFromDate] = useState('');
     const [toDate, setToDate] = useState('');
     const [bookingNo, setBookingNo] = useState('');
     const [currentPage, setCurrentPage] = useState(1);
+    const [locations, setLocations] = useState([]);
+    const [customers, setCustomers] = useState([]);
+
+    useEffect(() => {
+        // Fetch locations data
+        fetchLocations();
+        // Fetch customers data
+        fetchCustomers();
+    }, []);
+
+    const fetchLocations = () => {
+        // Replace 'your_api_endpoint' with your actual API endpoint to fetch locations
+        fetch('http://localhost:3001/locations')
+            .then(response => response.json())
+            .then(data => setLocations(data))
+            .catch(error => console.error('Error fetching locations:', error));
+    };
+
+    const fetchCustomers = () => {
+        // Replace 'your_api_endpoint' with your actual API endpoint to fetch customers
+        fetch('http://localhost:3001/customers')
+            .then(response => response.json())
+            .then(data => setCustomers(data))
+            .catch(error => console.error('Error fetching customers:', error));
+    };
 
 const [rowData, setRowData] = useState([
     { make: "Tesla", model: "Model Y", price: 64950, electric: true },
@@ -18,8 +80,19 @@ const [rowData, setRowData] = useState([
 
   const [colDefs, setColDefs] = useState([
     { field: "select" },
-    { field: "Booking No." },
-    { field: " Dock Booking Status." },
+    { 
+        field: "Booking No.", 
+        headerComponent: MultiLineHeader,
+        headerComponentParams: { headerText: "Booking No", enableSorting: true,sort: '', setSort: () => {}},
+
+        sortable: true,
+    },
+    { 
+        field: "Dock Booking Status", 
+        headerComponent: MultiLineHeader,
+        headerComponentParams: { headerText: "Dock Booking Status",enableSorting:true,sort: '', setSort: () => {}  },
+        sortable:true,
+        },
     { field: "Reject" },
     { field: "Order Type" },
     { field: "Commodity Type" },
@@ -73,12 +146,10 @@ const [rowData, setRowData] = useState([
                 <div>
                     <p>Location Name :</p>
                     <select id="dropdown">
-                        <option value="text" aria-placeholder='select'>--Select--</option>
-                        <option value="text">Setia City Mall</option>
-                        <option value="text">SLB ETHANOL Warehouse</option>
-                        <option value="text">Flipkartchn</option>
-                        <option value="text">Locationd</option>
-                        
+                    <option value="text" aria-placeholder='select'>--Select--</option>
+                            {locations.map(location => (
+                                <option key={location.id} value={location.id}>{location.name}</option>
+                            ))}
                     </select>
                 </div>
 
@@ -95,54 +166,11 @@ const [rowData, setRowData] = useState([
                 <div>
                     <p>Cust/Tenant/Cons :</p>
                     <select id="dropdown">
-                        <option value="text" aria-placeholder='select'>--Select--</option>
-                        <option value="text">KFC</option>
-                        <option value="text">Arrow</option>
-                        <option value="text">MAC-KD</option>
-                        <option value="text">DSAT</option>
-                        <option value="text">Lulu Supermarket</option>
-                        <option value="text">Guardian</option>
-                        <option value="text">Dzi kingdom</option>
-                        <option value="text">D'Nature</option>
-                        <option value="text">NOG Eyewear</option>
-                        <option value="text">LA Watch</option>
-                        <option value="text">Ahh-Yum By Kampung Kravers</option>
-                        <option value="text">Union Cafe</option>
-                        <option value="text">CDLC</option>
-                        <option value="text">Dunkin Cafe</option>
-                        <option value="text">The whale Tea</option>
-                        <option value="text">MyLaksa</option>
-                        <option value="text">Sup Haji Abu</option>
-                        <option value="text">Stuff'D</option>
-                        <option value="text">Chun Yang</option>
-                        <option value="text">Black Canyon</option>
-                        <option value="text">Dubuyo</option>
-                        <option value="text">Sepiring</option>
-                        <option value="text">Saranghea</option>
-                        <option value="text">Hot & Roll</option>
-                        <option value="text">Vennilla Mill Crepe</option>
-                        <option value="text">Tong Garden</option>
-                        <option value="text">CRYO Cloud Ice Cream</option>
-                        <option value="text">Dolly Dim Sum</option>
-                        <option value="text">Sukiya Gyudon</option>
-                        <option value="text">Santan</option>
-                        <option value="text">Texas Chicken</option>
-                        <option value="text">Issen Hin Ramen</option>
-                        <option value="text">Lucky Mala</option>
-                        <option value="text">Koi Tea</option>
-                        <option value="text">Ichiba Ramen</option>
-                        <option value="text">Burger King</option>
-                        <option value="text">Lulu Department store</option>
-                        <option value="text">Brands Outlet</option>
-                        <option value="text">Button Carves</option>
-                        <option value="text">Watsons</option>
-                        <option value="text">A-Wow-Me</option>
-                        <option value="text">Eye Font</option>
-                        <option value="text">Naelofar</option>
-                        <option value="text">Innisfree</option>
-                        <option value="text">Vincci</option>
-                        <option value="text">Wacoal</option>
-                        <option value="text">LC Waikiki</option>
+                    <option value="text" aria-placeholder='select'>--Select--</option>
+                            {customers.map(customer => (
+                                <option key={customer.id} value={customer.id}>{customer.name}</option>
+                            ))}
+                       
                     </select>
                 </div>
                
@@ -150,7 +178,7 @@ const [rowData, setRowData] = useState([
                     <p>Dock-IN-OUT Date :</p>
                     <input type="date" value={toDate} onChange={(e) => setToDate(e.target.value)}  />
                     
-                    <button type="button" className="btn btn-primary" style={{ backgroundColor: '#6d9ce8' }} onClick={handleSearch}>Search</button>
+                    <button type="button" className="btn btn-primary" style={{ backgroundColor: '#7c5f87',marginLeft: "20px", height: "40px", width:"150px" }} onClick={handleSearch}>Search</button>
                     
                 </div>
 
@@ -162,7 +190,7 @@ const [rowData, setRowData] = useState([
                         <option value="text">Rejected</option>
                         </select>
 
-                        <button type="button" className="btn btn-primary" style={{ backgroundColor: '#6d9ce8' }} onClick={handleSearch}>Update</button>
+                        <button type="button" className="btn btn-primary" style={{ backgroundColor: '#7c5f87', marginLeft: "20px", height: "40px", width:"150px"}} onClick={handleSearch}>Update</button>
 
                 </div>
               </div>
@@ -171,13 +199,14 @@ const [rowData, setRowData] = useState([
                 <br/>
 
            {/* ag grid starts from here */}
-               <div className='ag-theme-quartz' style={{ height:"100vh" , width:'92vw'}}>
+               <div className='ag-theme-quartz' style={{ height:"100vh" , width:'95vw'}}>
                 <AgGridReact 
                 rowData={rowData} 
                 columnDefs={colDefs}
                 pagination = {true}
                  domLayout='autoHeight' // Adjust the layout to fit content automatically
-                 defaultColDef={{ flex: 1 }} // Set all columns to have flexible width
+                 defaultColDef={{ flex: 2 }} // Set all columns to have flexible width
+                 headerHeight={60}
                 />
                </div>
                </div>

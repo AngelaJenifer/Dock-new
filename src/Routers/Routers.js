@@ -7,6 +7,12 @@ import Register from '../Components/Register/Register';
 import Calendar from '../Components/UI/Calender';
 import Tracking from '../Pages/Tracking';
 import DockBooking from '../Pages/Dockbooking';
+import Company from '../Pages/Company';
+import TruckType from '../Pages/TruckType';
+import Currency from '../Pages/Currency';
+import Dock from '../Pages/Dock';
+import Commodity from '../Pages/Commodity';
+import Location from '../Pages/Location';
 const Routers = () => {
   return (
     <Routes>
@@ -18,6 +24,15 @@ const Routers = () => {
     <Route path='/calendar' element={<Calendar />} />
     <Route path='/tracking' element={<Tracking />} />
     <Route path='/dockbooking' element={<DockBooking />} />
+    <Route path='/settings/company' element={<Company />} />
+    <Route path='/settings/trucktype' element={<TruckType />} />
+    <Route path='/settings/currency' element={<Currency />} />
+    <Route path='/settings/dock' element={<Dock />} />
+    <Route path='/settings/commodity' element={<Commodity />} />
+    <Route path='/settings/location' element={<Location />} />
+
+    
+    
    </Routes>
   )
  

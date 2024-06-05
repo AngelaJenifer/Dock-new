@@ -1,10 +1,24 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Container } from 'reactstrap';
 import Slider from 'react-slick';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import '../../Styles/HeroSlider.css'
+import { ClipLoader } from 'react-spinners';
 
 const HeroSlider = () => {
+
+  const [ isLoading, setIsLoading ] = useState(false);
+  const navigate = useNavigate()
+
+  const handleBooknow = async () => {
+    setIsLoading(true);
+    // Simulate a network request
+    await new Promise(resolve => setTimeout(resolve, 1000));
+    navigate('/login');
+    setIsLoading(false);
+    // alert('Slot booked successfully!');
+  };
+
     const settings = {
         fade: true,
         speed: 2000,
@@ -22,8 +36,10 @@ const HeroSlider = () => {
           <div className="slider__content ">
             <h1 className=" mb-4 hero-text">Book Now and Save Time</h1>
 
-            <button className="btn reserve__btn mt-4">
-              <Link to="/login">Book Now</Link>
+            <button className="btn reserve__btn mt-4"
+            onClick={handleBooknow}
+            disabled={isLoading} >
+              {isLoading ? <ClipLoader size={20} color={"red"} /> : <span className="booknow" >Book Now</span> }
             </button>
             
           </div>
@@ -35,9 +51,12 @@ const HeroSlider = () => {
           <div className="slider__content ">
             <h1 className=" mb-4 hero-text">Book Now and Save Time</h1>
 
-            <button className="btn reserve__btn mt-4">
-              <Link to="/login">Book Now</Link>
+            <button className="btn reserve__btn mt-4"
+            onClick={handleBooknow}
+            disabled={isLoading} >
+              {isLoading ? <ClipLoader size={20} color={"red"} /> : <span className="booknow" >Book Now</span> }
             </button>
+            
           </div>
         </Container>
       </div>
@@ -47,8 +66,10 @@ const HeroSlider = () => {
           <div className="slider__content ">
             <h1 className=" mb-4 hero-text">Book Now and Save Time</h1>
 
-            <button className="btn reserve__btn mt-4">
-              <Link to="/login">Book Now</Link>
+            <button className="btn reserve__btn mt-4"
+            onClick={handleBooknow}
+            disabled={isLoading} >
+              {isLoading ? <ClipLoader size={20} color={"red"} /> : <span className="booknow" >Book Now</span> }
             </button>
           </div>
         </Container>
