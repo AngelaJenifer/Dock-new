@@ -9,10 +9,13 @@ import Tracking from '../Pages/Tracking';
 import DockBooking from '../Pages/Dockbooking';
 import Company from '../Pages/Company';
 import TruckType from '../Pages/TruckType';
+<<<<<<< HEAD
 import Currency from '../Pages/Currency';
 import Dock from '../Pages/Dock';
 import Commodity from '../Pages/Commodity';
 import Location from '../Pages/Location';
+=======
+>>>>>>> origin/main
 const Routers = () => {
   return (
     <Routes>
@@ -26,10 +29,13 @@ const Routers = () => {
     <Route path='/dockbooking' element={<DockBooking />} />
     <Route path='/settings/company' element={<Company />} />
     <Route path='/settings/trucktype' element={<TruckType />} />
+<<<<<<< HEAD
     <Route path='/settings/currency' element={<Currency />} />
     <Route path='/settings/dock' element={<Dock />} />
     <Route path='/settings/commodity' element={<Commodity />} />
     <Route path='/settings/location' element={<Location />} />
+=======
+>>>>>>> origin/main
 
     
     

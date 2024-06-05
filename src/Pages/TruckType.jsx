@@ -1,6 +1,12 @@
+<<<<<<< HEAD
 import React, { useEffect, useState } from 'react';
 import { AgGridReact } from 'ag-grid-react';
 import "ag-grid-community/styles/ag-grid.css";
+=======
+import { AgGridReact } from 'ag-grid-react';
+import React, { useEffect, useState } from 'react';
+import "ag-grid-community/styles/ag-grid.css"; // Core CSS
+>>>>>>> origin/main
 import "ag-grid-community/styles/ag-theme-quartz.css";
 import Nav from '../Components/UI/Nav';
 import EditIcon from '@mui/icons-material/Edit';
@@ -8,10 +14,13 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import { Grid } from '@mui/material';
 import axios from 'axios';
 import TruckCanvas from './canvas/TruckCanvas';
+<<<<<<< HEAD
 import ThumbUpIcon from '@mui/icons-material/ThumbUp';
 import ClearIcon from '@mui/icons-material/Clear';
 import Button from 'react-bootstrap/esm/Button';
 import { exportToExcel } from './utils/excelUtils'
+=======
+>>>>>>> origin/main
 
 const TruckType = () => {
     const [tableData, setTableData] = useState([]);
@@ -20,6 +29,10 @@ const TruckType = () => {
     const [formData, setFormData] = useState({
         truckname: "",
         truckcode: "",
+<<<<<<< HEAD
+=======
+        
+>>>>>>> origin/main
     });
     const [formDataEdit, setFormDataEdit] = useState({
         truckname: "",
@@ -29,18 +42,27 @@ const TruckType = () => {
     const columnDefs = [
         { headerName: 'Truck Name', field: 'truckname' },
         { headerName: 'Truck Code', field: 'truckcode' },
+<<<<<<< HEAD
         {
             headerName: 'Active', field: 'Active',
             cellRenderer: (params) => (
                 <ThumbUpIcon style={{ color: params.value ? 'green' : 'grey' }} />
             )
         },
+=======
+        
+        { headerName: 'Active', field: 'Active' },
+>>>>>>> origin/main
         {
             headerName: 'Edit',
             field: '',
             cellRenderer: (params) => (
                 <div style={{ display: 'inline-block', marginRight: "25px" }}>
+<<<<<<< HEAD
                     <EditIcon onClick={() => handleEdit(params.data)} style={{ color: '#E9C46A', cursor: 'pointer' }} />
+=======
+                    <EditIcon onClick={() => handleEdit(params.data)} />
+>>>>>>> origin/main
                 </div>
             )
         },
@@ -48,7 +70,11 @@ const TruckType = () => {
             headerName: 'Delete', field: 'delete',
             cellRenderer: (params) => (
                 <div style={{ display: 'inline-block' }}>
+<<<<<<< HEAD
                     <ClearIcon onClick={() => handleDelete(params.data._id)} style={{ color: "red", cursor: "pointer"}} />
+=======
+                    <DeleteIcon onClick={() => handleDelete(params.data._id)} />
+>>>>>>> origin/main
                 </div>
             )
         },
@@ -73,17 +99,26 @@ const TruckType = () => {
         e.preventDefault();
         const response = await axios.post("http://localhost:5000/createtruck", formData);
         if (response.data.success) {
+<<<<<<< HEAD
+=======
+            
+>>>>>>> origin/main
             alert(response.data.message);
             getFetchData();
             setFormData({
                 truckname: "",
+<<<<<<< HEAD
                 truckcode: "",
+=======
+        truckcode: "",
+>>>>>>> origin/main
             });
             setAddSection(false);
         }
     };
 
     const handleDelete = async (id) => {
+<<<<<<< HEAD
         try {
             console.log("Deleting:", id);
             const response = await axios.delete(`http://localhost:5000/deletetruck/${id}`);
@@ -98,6 +133,23 @@ const TruckType = () => {
             alert("An error occurred while deleting the company");
         }
     };
+=======
+      try {
+          console.log("Deleting:", id);
+          const response = await axios.delete(`http://localhost:5000/deletetruck/${id}`);
+          if (response.data.success) {
+              // Update tableData state to reflect the changes
+              setTableData(prevData => prevData.filter(item => item._id !== id));
+              alert(response.data.message);
+          } else {
+              alert("Failed to delete company"+ response.data.message);
+          }
+      } catch (error) {
+          console.error("Error deleting company:", error);
+          alert("An error occurred while deleting the company");
+      }
+  };
+>>>>>>> origin/main
 
     const handleUpdate = async (e) => {
         e.preventDefault();
@@ -109,8 +161,15 @@ const TruckType = () => {
         }
     };
 
+<<<<<<< HEAD
     const handleEdit = (data) => {
         console.log("Editing:", data)
+=======
+    
+    const handleEdit = (data) => {
+      console.log("Editing:", data)
+      
+>>>>>>> origin/main
         setFormDataEdit(data);
         setEditSection(true);
     };
@@ -131,10 +190,13 @@ const TruckType = () => {
         }));
     };
 
+<<<<<<< HEAD
     const handleExportToExcel = () => {
         exportToExcel(tableData, "Trucks", "TrucksData.xlsx");
     };
 
+=======
+>>>>>>> origin/main
     return (
         <>
             <Nav />
@@ -149,6 +211,7 @@ const TruckType = () => {
                     handleEditOnChange={handleEditOnChange}
                     handleUpdate={handleUpdate}
                     formDataEdit={formDataEdit}
+<<<<<<< HEAD
                     exportToExcel={handleExportToExcel} // Pass the exportToExcel prop
                 />
             </Grid>
@@ -169,6 +232,13 @@ const TruckType = () => {
                         Export to Excel
                     </Button> */}
                 </div>
+=======
+                   
+                />
+            </Grid>
+            <div style={{ paddingLeft: "50px" }}>
+                
+>>>>>>> origin/main
                 <hr style={{ width: '93vw', border: '1px solid black' }} />
                 <div className='d-flex vh-30 justify-content-center align-items-center'>
                     <div className='w-100 bg-white rounded p-3'>
@@ -186,4 +256,8 @@ const TruckType = () => {
     );
 };
 
+<<<<<<< HEAD
 export default TruckType;
+=======
+export default TruckType;
+>>>>>>> origin/main

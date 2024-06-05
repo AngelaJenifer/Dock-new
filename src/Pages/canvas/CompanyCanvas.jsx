@@ -1,9 +1,16 @@
+<<<<<<< HEAD
 import React, { useState, useEffect } from 'react';
 import Button from 'react-bootstrap/Button';
 import Offcanvas from 'react-bootstrap/Offcanvas';
 import { Form, FormGroup, Label, Input, Row, Col } from 'reactstrap';
 import { Country, State, City } from 'country-state-city';
 import axios from 'axios';
+=======
+import React, { useState } from 'react';
+import Button from 'react-bootstrap/Button';
+import Offcanvas from 'react-bootstrap/Offcanvas';
+import { Form, FormGroup, Label, Input, Row, Col } from 'reactstrap';
+>>>>>>> origin/main
 
 const CompanyCanvas = ({
     show,
@@ -15,6 +22,7 @@ const CompanyCanvas = ({
     handleEditOnChange,
     handleUpdate,
     formDataEdit,
+<<<<<<< HEAD
     exportToExcel,
 }) => {
     const [visible, setVisible] = useState(show);
@@ -86,10 +94,24 @@ const CompanyCanvas = ({
         const newVisibility = !visible;
         setVisible(newVisibility);
         setAddSection(!newVisibility);
+=======
+    setShowCanvas,
+    
+}) => {
+    const [visible, setVisible] = useState(show);
+
+    const toggleShow = () => {
+        setVisible(!visible);
+        if (!visible)
+         setAddSection(false);
+        
+        
+>>>>>>> origin/main
     };
 
     return (
         <>
+<<<<<<< HEAD
             <div className="d-flex justify-content-between align-items-center mb-3">
                 <h2>Company List</h2>
                 
@@ -110,6 +132,20 @@ const CompanyCanvas = ({
                 
             </div>
             <Offcanvas show={visible} onHide={toggleShow} style={{ width: "80%" }}>
+=======
+        
+                
+        <div>
+        <h1>Company List</h1>
+        <div style={{paddingLeft: "1500px"}}>
+                    
+            <Button variant="primary" onClick={toggleShow} style={{ backgroundColor: '#7c5f87' }}>
+                Add Company List
+            </Button>
+            </div>
+            </div>
+            <Offcanvas show={visible || show} onHide={toggleShow} style={{ width: "80%" }} >
+>>>>>>> origin/main
                 <Offcanvas.Header closeButton>
                     <Offcanvas.Title>
                         {editSection ? "Edit Company" : "Add Company"}
@@ -117,7 +153,11 @@ const CompanyCanvas = ({
                 </Offcanvas.Header>
                 <hr />
                 <Offcanvas.Body>
+<<<<<<< HEAD
                     <Form onSubmit={editSection ? handleUpdate : handleSubmit}>
+=======
+                <Form onSubmit={editSection ? handleUpdate : handleSubmit}>
+>>>>>>> origin/main
                         <Row>
                             <Col md={4}>
                                 <FormGroup>
@@ -135,6 +175,7 @@ const CompanyCanvas = ({
                                     <Input
                                         id="country"
                                         name="country"
+<<<<<<< HEAD
                                         type="select"
                                         value={editSection ? formDataEdit.countryCode : formData.countryCode}
                                         onChange={handleCountryChange}
@@ -146,6 +187,12 @@ const CompanyCanvas = ({
                                             </option>
                                         ))}
                                     </Input>
+=======
+                                        type="text"
+                                        value={editSection ? formDataEdit.country : formData.country}
+                                        onChange={editSection ? handleEditOnChange : handleOnChange}
+                                    />
+>>>>>>> origin/main
                                 </FormGroup>
                                 <FormGroup>
                                     <Label for="subdistrict">Sub-District</Label>
@@ -195,6 +242,7 @@ const CompanyCanvas = ({
                                     <Input
                                         id="province"
                                         name="province"
+<<<<<<< HEAD
                                         type="select"
                                         value={editSection ? formDataEdit.stateCode : formData.stateCode}
                                         onChange={handleStateChange}
@@ -206,6 +254,12 @@ const CompanyCanvas = ({
                                             </option>
                                         ))}
                                     </Input>
+=======
+                                        type="text"
+                                        value={editSection ? formDataEdit.province : formData.province}
+                                        onChange={editSection ? handleEditOnChange : handleOnChange}
+                                    />
+>>>>>>> origin/main
                                 </FormGroup>
                                 <FormGroup>
                                     <Label for="taxid">Tax ID</Label>
@@ -234,6 +288,7 @@ const CompanyCanvas = ({
                                     <Input
                                         id="city"
                                         name="city"
+<<<<<<< HEAD
                                         type="select"
                                         value={editSection ? formDataEdit.city : formData.city}
                                         onChange={handleCityChange}
@@ -245,6 +300,12 @@ const CompanyCanvas = ({
                                             </option>
                                         ))}
                                     </Input>
+=======
+                                        type="text"
+                                        value={editSection ? formDataEdit.city : formData.city}
+                                        onChange={editSection ? handleEditOnChange : handleOnChange}
+                                    />
+>>>>>>> origin/main
                                 </FormGroup>
                                 <FormGroup>
                                     <Label for="district">District</Label>
@@ -266,6 +327,7 @@ const CompanyCanvas = ({
                                         onChange={editSection ? handleEditOnChange : handleOnChange}
                                     />
                                 </FormGroup>
+<<<<<<< HEAD
                                 <FormGroup>
                                 <Label for="currency">Currency</Label>
                                     <Input
@@ -298,10 +360,23 @@ const CompanyCanvas = ({
                                 </Button>
                                 </div>
                     </Form>
+=======
+                                <Button type="submit" style={{ marginTop: '15px', backgroundColor: '#7c5f87' }}>
+                                    {editSection ? "Update Company" : "Add Company"}
+                                </Button>
+                            </Col>
+                        </Row>
+                    </Form>
+
+>>>>>>> origin/main
                 </Offcanvas.Body>
             </Offcanvas>
         </>
     );
 };
 
+<<<<<<< HEAD
 export default CompanyCanvas;
+=======
+export default CompanyCanvas;
+>>>>>>> origin/main

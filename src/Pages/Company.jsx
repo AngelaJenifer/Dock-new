@@ -8,11 +8,14 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import { Grid } from '@mui/material';
 import CompanyCanvas from './canvas/CompanyCanvas';
 import axios from 'axios';
+<<<<<<< HEAD
 import ClearIcon from '@mui/icons-material/Clear';
 import ThumbUpIcon from '@mui/icons-material/ThumbUp';
 import { exportToExcel } from './utils/excelUtils'
 
 
+=======
+>>>>>>> origin/main
 
 const Company = () => {
     const [tableData, setTableData] = useState([]);
@@ -31,8 +34,11 @@ const Company = () => {
         city: "",
         district: "",
         email: "",
+<<<<<<< HEAD
         currency:"",
         
+=======
+>>>>>>> origin/main
     });
     const [formDataEdit, setFormDataEdit] = useState({
         Cname: "",
@@ -47,8 +53,11 @@ const Company = () => {
         city: "",
         district: "",
         email: "",
+<<<<<<< HEAD
         currency:"",
         
+=======
+>>>>>>> origin/main
     });
 
     const columnDefs = [
@@ -60,18 +69,26 @@ const Company = () => {
         { headerName: 'Phone', field: 'phone' },
         { headerName: 'Email', field: 'email' },
         { headerName: 'Currency', field: 'currency' },
+<<<<<<< HEAD
         {
             headerName: 'Active', field: 'Active',
             cellRenderer: (params) => (
                 <ThumbUpIcon style={{ color: params.value ? 'green' : 'grey' }} />
             )
         },
+=======
+        { headerName: 'Active', field: 'Active' },
+>>>>>>> origin/main
         {
             headerName: 'Edit',
             field: '',
             cellRenderer: (params) => (
                 <div style={{ display: 'inline-block', marginRight: "25px" }}>
+<<<<<<< HEAD
                     <EditIcon onClick={() => handleEdit(params.data)} style={{ color: '#E9C46A', cursor: 'pointer' }} />
+=======
+                    <EditIcon onClick={() => handleEdit(params.data)} />
+>>>>>>> origin/main
                 </div>
             )
         },
@@ -79,7 +96,11 @@ const Company = () => {
             headerName: 'Delete', field: 'delete',
             cellRenderer: (params) => (
                 <div style={{ display: 'inline-block' }}>
+<<<<<<< HEAD
                     <ClearIcon onClick={() => handleDelete(params.data._id)} style={{ color: 'red', cursor: 'pointer' }} />
+=======
+                    <DeleteIcon onClick={() => handleDelete(params.data._id)} />
+>>>>>>> origin/main
                 </div>
             )
         },
@@ -176,15 +197,21 @@ const Company = () => {
             [name]: value
         }));
     };
+<<<<<<< HEAD
     const handleExportToExcel = () => {
         exportToExcel(tableData, "companies", "CompanyData.xlsx");
     };
 
+=======
+>>>>>>> origin/main
 
     return (
         <>
             <Nav />
+<<<<<<< HEAD
             <div style={{ paddingLeft: "50px" }}>
+=======
+>>>>>>> origin/main
             <Grid>
                 <CompanyCanvas
                     show={addSection || editSection}
@@ -197,6 +224,7 @@ const Company = () => {
                     handleEditOnChange={handleEditOnChange}
                     handleUpdate={handleUpdate}
                     formDataEdit={formDataEdit}
+<<<<<<< HEAD
                     exportToExcel={handleExportToExcel}
                    
                 />
@@ -207,11 +235,26 @@ const Company = () => {
                 <div className='d-flex vh-30 justify-content-center align-items-center'>
                     <div className='w-100 bg-white rounded p-3'>
                         <div className="ag-theme-quartz" style={{ height: 600, width: '100%' }}>
+=======
+                    
+                   
+                />
+            </Grid>
+            <div style={{ paddingLeft: "50px" }}>
+                
+                <hr style={{ width: '93vw', border: '1px solid black' }} />
+                <div className='d-flex vh-30 justify-content-center align-items-center'>
+                    <div className='w-100 bg-white rounded p-3'>
+                        <div className="ag-theme-quartz" style={{ height: 400, width: '100%' }}>
+>>>>>>> origin/main
                             <AgGridReact
                                 columnDefs={columnDefs}
                                 defaultColDef={defaultColDef}
                                 rowData={tableData}
+<<<<<<< HEAD
                                 pagination={true}
+=======
+>>>>>>> origin/main
                             />
                         </div>
                     </div>

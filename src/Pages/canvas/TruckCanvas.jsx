@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 import React, { useState, useEffect } from 'react';
+=======
+import React, { useState } from 'react';
+>>>>>>> origin/main
 import Button from 'react-bootstrap/Button';
 import Offcanvas from 'react-bootstrap/Offcanvas';
 import { Form, FormGroup, Label, Input, Row, Col } from 'reactstrap';
@@ -13,6 +17,7 @@ const TruckCanvas = ({
     handleEditOnChange,
     handleUpdate,
     formDataEdit,
+<<<<<<< HEAD
     exportToExcel,
 }) => {
     const [visible, setVisible] = useState(show);
@@ -24,10 +29,21 @@ const TruckCanvas = ({
     const toggleShow = () => {
         setVisible(!visible);
         setAddSection(!visible);
+=======
+    
+}) => {
+    const [visible, setVisible] = useState(show);
+
+    const toggleShow = () => {
+        setVisible(!visible);
+        if (!visible) setAddSection(false);
+        
+>>>>>>> origin/main
     };
 
     return (
         <>
+<<<<<<< HEAD
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center',paddingLeft:'50px' }}>
                 <h2>TruckType List</h2>
                 <Button
@@ -51,6 +67,20 @@ const TruckCanvas = ({
                 onHide={toggleShow}
                 style={{ width: "80%" }}
             >
+=======
+        
+                
+        <div>
+        <h1>TruckType List</h1>
+        <div style={{paddingLeft: "1500px"}}>
+                    
+            <Button variant="primary" onClick={toggleShow} style={{ backgroundColor: '#7c5f87' }}>
+                Add TruckType
+            </Button>
+            </div>
+            </div>
+            <Offcanvas show={visible || show} onHide={toggleShow} style={{ width: "80%" }} setVisible={setVisible} >
+>>>>>>> origin/main
                 <Offcanvas.Header closeButton>
                     <Offcanvas.Title>
                         {editSection ? "Edit Truck" : "Add Truck"}
@@ -71,7 +101,12 @@ const TruckCanvas = ({
                                         onChange={editSection ? handleEditOnChange : handleOnChange}
                                     />
                                 </FormGroup>
+<<<<<<< HEAD
 
+=======
+                               
+                                
+>>>>>>> origin/main
                                 <FormGroup check>
                                     <Label check>
                                         <Input
@@ -85,7 +120,11 @@ const TruckCanvas = ({
                                 </FormGroup>
                             </Col>
                             <Col md={4}>
+<<<<<<< HEAD
                                 <FormGroup>
+=======
+                            <FormGroup>
+>>>>>>> origin/main
                                     <Label for="truckcode">Country</Label>
                                     <Input
                                         id="truckcode"
@@ -96,6 +135,7 @@ const TruckCanvas = ({
                                     />
                                 </FormGroup>
 
+<<<<<<< HEAD
                                 <Button
                                     type="submit"
                                     style={{ marginTop: '15px', backgroundColor: '#7c5f87' }}
@@ -103,6 +143,13 @@ const TruckCanvas = ({
                                     {editSection ? "Update Truck" : "Add Truck"}
                                 </Button>
                             </Col>
+=======
+                                <Button type="submit" style={{ marginTop: '15px', backgroundColor: '#7c5f87' }}>
+                                    {editSection ? "Update Truck" : "Add Truck"}
+                                </Button>
+                            </Col>
+                           
+>>>>>>> origin/main
                         </Row>
                     </Form>
                 </Offcanvas.Body>
@@ -111,4 +158,8 @@ const TruckCanvas = ({
     );
 };
 
+<<<<<<< HEAD
 export default TruckCanvas;
+=======
+export default TruckCanvas;
+>>>>>>> origin/main
